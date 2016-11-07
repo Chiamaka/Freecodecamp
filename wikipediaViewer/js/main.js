@@ -6,7 +6,10 @@ $(document).ready(function(){
 			type: "GET",
 			dataType: 'jsonp',
 			success: function(data){
-				searchResult(data);
+				data[1].length > 0 ? searchResult(data) : emptyResult();
+			},
+			error: function(){
+				alert('Error displaying search results. Please refresh');
 			}
 		})
 	});
@@ -36,4 +39,16 @@ $(document).ready(function(){
       div.appendTo($('.results-container'));
     }
   }
+
+	function emptyResult(){
+		$('.results-container').empty();
+		let word = $('#search-term').val();
+		let div = document.createElement('div');
+		let message = document.createElement('p');
+		div = $(div).addClass('ui center aligned container not-found');
+		message = $(message).text(`The page "${word}" does not exist`).addClass('doesnt-exist');
+		div.append(message);
+		div.appendTo($('.results-container'));
+
+	}
 });

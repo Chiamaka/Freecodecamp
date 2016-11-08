@@ -1,0 +1,41 @@
+main {
+  margin-top: 100px;
+  border: 1px solid #000;
+}
+
+.filters {
+  display: -webkit-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  list-style: none;
+  cursor: pointer;
+}
+
+.online-icon {
+  color: green;
+}
+
+.offline-icon {
+  color: red;
+}
+
+.ui .cards {
+  justify-content: space-between;
+}
+
+.streaming span {
+  font-style: italic;
+}
+
+.card#online {
+  border-top: 10px solid green;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.card#offline {
+  border-top: 10px solid red;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}

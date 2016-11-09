@@ -10,10 +10,10 @@
     <main class="ui center aligned container">
       <h1>TwitchTV Streamers</h1>
       <!-- filters links -->
-      <ul class="filters ui row">
-        <li><i class="circle icon"></i>All</li>
-        <li><i class="circle icon online-icon"></i>Online</li>
-        <li><i class="circle icon offline-icon"></i>Offline</li>
+      <ul class="ui filters">
+        <li class="all-btn"><i class="circle icon"></i>All</li>
+        <li class="online-btn"><i class="circle icon online-icon"></i>Online</li>
+        <li class="offline-btn"><i class="circle icon offline-icon"></i>Offline</li>
       </ul>
       <div class="ui horizontal divider">
         Filters
@@ -24,8 +24,9 @@
           <div class="image">
             <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/esl_sc2-profile_image-d6db9488cec97125-300x300.jpeg">
           </div>
+
           <div class="content">
-            <div class="header">C9Sneaky</div>
+            <a href="#" target="_blank">C9Sneaky</a>
           </div>
           <div class="extra content">
             <span class="right floated">
@@ -36,7 +37,6 @@
             </span>
           </div>
         </div>
-
         <div class="card" id="online">
           <div class="image">
             <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/esl_sc2-profile_image-d6db9488cec97125-300x300.jpeg">
@@ -57,7 +57,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" id="offline">
           <div class="image">
             <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/esl_sc2-profile_image-d6db9488cec97125-300x300.jpeg">
           </div>
@@ -74,7 +74,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" id="offline">
           <div class="image">
             <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/esl_sc2-profile_image-d6db9488cec97125-300x300.jpeg">
           </div>

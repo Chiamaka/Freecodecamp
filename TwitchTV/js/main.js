@@ -17,10 +17,9 @@ $(document).ready(() => {
 
   //getting JSON data from TwitchTV API
   //TwitchTV users array
-  let users = ['freecodecamp'/*, 'c9sneaky', 'nadeshot', 'formal'*/];
+  let users = ['freecodecamp', 'c9sneaky', 'nadeshot', 'formal', 'ESL_SC2', 'OgamingSC2', 'cretetion', 'storbeck', 'habathcx', 'RobotCaleb', 'noobs2ninjas', 'brunofin'];
   //Step 1: Send GET request to /streams/ endpoint to know if the user is currently streaming or not.
   users.forEach((user) => {
-    console.log(user);
     $.ajax({
       url: `https://wind-bow.hyperdev.space/twitch-api/streams/${user}`,
       type: 'GET',
@@ -29,6 +28,8 @@ $(document).ready(() => {
         if(data.stream === null) {
           console.log('currently offline');
           offline(data, user);
+        } else if(data.status === 404){
+          doesNotExist(user);
         } else {
           console.log('currently online');
           showOnlineData(data);
@@ -40,7 +41,7 @@ $(document).ready(() => {
     });
   });
 
-  function offline(data, user){
+  function offline(data, user) {
     $.ajax({
       url: `https://wind-bow.hyperdev.space/twitch-api/channels/${user}`,
       type: 'GET',
@@ -61,7 +62,7 @@ $(document).ready(() => {
     let url = data.stream.channel.url;
     let createdAt = new Date(data.stream.channel.created_at).getFullYear();
     let game = data.stream.game;
-    constructCard('online',logo, name, followers, url, created, game);
+    constructCard('online',logo, name, followers, url, createdAt, game);
   }
 
   function showOfflineData(data) {
@@ -69,8 +70,8 @@ $(document).ready(() => {
     let name = data.display_name;
     let followers = data.followers;
     let url = data.url;
-    let created = new Date(data.created_at).getFullYear();
-    constructCard('offline', logo, name, followers, url, created);
+    let createdAt = new Date(data.created_at).getFullYear();
+    constructCard('offline', logo, name, followers, url, createdAt);
   }
 
   function constructCard(status, logo, name, followers, url, created, game) {
@@ -83,17 +84,17 @@ $(document).ready(() => {
     let a = document.createElement('a');
     let divCard = $(div).clone();
     (status === 'online')? $(divCard).addClass('card').attr('id', 'online') : $(divCard).addClass('card').attr('id', 'offline');
-
+    if (status === 'doesntExist'){$(divCard).addClass('card').attr('id', 'doesntExist')}
     let imageDiv = $(div).clone();
     $(imageDiv).addClass('image');
-    $(img).attr('src', 'https://static-cdn.jtvnw.net/jtv_user_pictures/esl_sc2-profile_image-d6db9488cec97125-300x300.jpeg');
+    $(img).attr('src', logo);
     $(imageDiv).append(img);
 
     let contentDiv = $(div).clone();
     $(contentDiv).addClass('content');
 
     console.log(url);
-    $(a).attr('href', url).attr('target', '_blank').text('freecodecamp'); //name of the twitch tv user;
+    $(a).attr('href', url).attr('target', '_blank').text(name); //name of the twitch tv user;
     $(contentDiv).append(a);
 
     let streamingDiv = $(div).clone();
@@ -114,13 +115,13 @@ $(document).ready(() => {
     $(extraContentDiv).append(span1)
                       .append(span2);
 
-    // $(a).attr('href', url).append(divCard);
     $(divCard).append(imageDiv);
     $(divCard).append(contentDiv);
     $(divCard).append(extraContentDiv);
     $(divCard).appendTo($('.cards'));
-    // console.log(a);
   }
 
-  constructCard('online', '', 'freecodecamp', 23334, 'http://www.google.com', 2012, 'javascript coding');
+  function doesNotExist(user) {
+    constructCard('doesntExist', 'https://d13yacurqjgara.cloudfront.net/users/72790/screenshots/1508705/404_1x.png', user, 'no', '', 'no idea');
+  }
 });

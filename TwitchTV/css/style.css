@@ -40,6 +40,12 @@ main {
   border-top-left-radius: 20px;
 }
 
+.card#doesntExist {
+  border-top: 10px solid grey;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
 .hidden {
   display: none;
 }

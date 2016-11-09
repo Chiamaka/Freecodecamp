@@ -3,11 +3,13 @@ $(document).ready(() => {
   $('.online-btn').on('click', () => {
     $('.card').show();
     $('.card#offline').hide();
+    $('.card#doesntExist').hide();
   });
 
   $('.offline-btn').on('click', () => {
     $('.card').show();
     $('.card#online').hide();
+    $('.card#doesntExist').hide();
   });
 
   $('.all-btn').on('click', () => {

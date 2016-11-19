@@ -58,33 +58,35 @@ $(document).ready(() => {
   }
 
   function showOnlineData(data) {
-    let logo = data.stream.channel.logo;
-    let name = data.stream.channel.display_name;
-    let followers = data.stream.channel.followers;
-    let url = data.stream.channel.url;
-    let createdAt = new Date(data.stream.channel.created_at).getFullYear();
-    let game = data.stream.game;
+    let logo = data.stream.channel.logo,
+        name = data.stream.channel.display_name,
+        followers = data.stream.channel.followers,
+        url = data.stream.channel.url,
+        createdAt = new Date(data.stream.channel.created_at).getFullYear(),
+        game = data.stream.game;
     constructCard('online',logo, name, followers, url, createdAt, game);
   }
 
   function showOfflineData(data) {
-    let logo = data.logo;
-    let name = data.display_name;
-    let followers = data.followers;
-    let url = data.url;
-    let createdAt = new Date(data.created_at).getFullYear();
+    let logo = data.logo,
+        name = data.display_name,
+        followers = data.followers,
+        url = data.url,
+        createdAt = new Date(data.created_at).getFullYear();
     constructCard('offline', logo, name, followers, url, createdAt);
   }
 
   function constructCard(status, logo, name, followers, url, created, game) {
-    let div = document.createElement('div');
-    let img = document.createElement('img');
-    let span1 = document.createElement('span');
-    let span2 = document.createElement('span');
-    let span3 = document.createElement('span');
-    let i = document.createElement('i');
-    let a = document.createElement('a');
-    let divCard = $(div).clone();
+    console.time('Time to construct Card');
+    let div = document.createElement('div'),
+        img = document.createElement('img'),
+        span1 = document.createElement('span'),
+        span2 = document.createElement('span'),
+        span3 = document.createElement('span'),
+        i = document.createElement('i'),
+        a = document.createElement('a'),
+        divCard = $(div).clone();
+        stagingDiv = document.createDocumentFragment();
     (status === 'online')? $(divCard).addClass('card').attr('id', 'online') : $(divCard).addClass('card').attr('id', 'offline');
     if (status === 'doesntExist'){$(divCard).addClass('card').attr('id', 'doesntExist')}
     let imageDiv = $(div).clone();
@@ -120,7 +122,9 @@ $(document).ready(() => {
     $(divCard).append(imageDiv);
     $(divCard).append(contentDiv);
     $(divCard).append(extraContentDiv);
-    $(divCard).appendTo($('.cards'));
+    $(stagingDiv).append(divCard);
+    $(stagingDiv).appendTo($('.cards'));
+    console.timeEnd('Time to construct Card');
   }
 
   function doesNotExist(user) {

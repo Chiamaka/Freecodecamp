@@ -13,17 +13,21 @@
 
 "use strict";
 function convertHTML(str) {
-    let charArray = ['&', '<', '>', '"', "'"];
-    let entitiesArray = ['&amp;', '&lt;', '&gt;', '&quot;', '&apos;'];
-
+    let charObj = {
+        '&' : '&amp;',
+        '<' : '&lt;',
+        '>' : '&gt;',
+        '"' : '&quot;',
+        "'" : '&apos;'
+    };
     for (let letter of str) {
-        for (let char in charArray) {
-            if(letter === charArray[char]) {
-                str = str.replace(charArray[char], entitiesArray[char]);
+        for (let property in charObj) {
+            if(letter === property) {
+                str = str.replace(property, charObj[property]);
             }
         }
     }
     return str;
 }
 
-console.log(convertHTML("abc"));
+console.log(convertHTML("Hamburgers < Pizza < Tacos"));

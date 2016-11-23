@@ -21,7 +21,7 @@ function convertHTML(str) {
         "'" : '&apos;'
     };
     for (let letter of str) {
-        if (charObj[letter]) {
+        if (letter in charObj) {
             str = str.replace(letter, charObj[letter]);
         }
     }

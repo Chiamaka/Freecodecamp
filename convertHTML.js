@@ -21,10 +21,8 @@ function convertHTML(str) {
         "'" : '&apos;'
     };
     for (let letter of str) {
-        for (let property in charObj) {
-            if(letter === property) {
-                str = str.replace(property, charObj[property]);
-            }
+        if (charObj[letter]) {
+            str = str.replace(letter, charObj[letter]);
         }
     }
     return str;

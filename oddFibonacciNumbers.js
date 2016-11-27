@@ -29,9 +29,12 @@ function sumFibs(num) {
     })(num);
 
     //filter the odd out of the fibonacci array.
-    let oddNumbers = () => fibArray.filter(function (number) {
-        return (number%2 !==0 && number <= num);
-    });
+
+    function filterFn () {
+        return (number) =>  (number%2 !==0 && number <= num);
+    };
+
+    let oddNumbers = (filterFn, number) => fibArray.filter(filterFn(number));
 
     //add the odd array gotten from oddNumbers together.
     let sum = (array) => {
@@ -40,7 +43,8 @@ function sumFibs(num) {
             return a + b;
         });
     };
-    return sum(oddNumbers());
+
+    return sum(oddNumbers(filterFn,num));
 }
 
 console.log(sumFibs(75025));

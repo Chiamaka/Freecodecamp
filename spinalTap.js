@@ -13,18 +13,22 @@
 "use strict";
 function spinalCase(str) {
     str = str.charAt(0).toLowerCase() + str.slice(1); //turn the first letters to lowercase
+    //replace _ with space
     if (/_/g.test(str)) {
         str = str.replace(/_/g, ' ');
     }
 
+    //put a space at the beginning of every capital letter
     if (/([A-Z])/g.test(str)) {
         str = str.replace(/([A-Z])/g, ' $1');
     }
 
+    //replace multiple spaces with one dash
     if (/\s/g.test(str)) {
         str = str.replace(/ +/g, '-');
     }
 
+    //turn entire string to lowercase
     return str.toLocaleLowerCase();
 }
 

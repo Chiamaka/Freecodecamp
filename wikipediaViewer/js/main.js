@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	$('#wiki-search').click(() => {
     let word = $('#search-term').val();
+		document.getElementById('ruler').classList.remove('invisible');
 		$.ajax({
 			url: `https://en.wikipedia.org/w/api.php?action=opensearch&search=${word}&format=json&callback?`,
 			type: "GET",

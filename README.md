@@ -2,7 +2,7 @@
 Freecodecamp frontend certificate exercises
 ___
 ## Wikipedia Viewer
-A project built with HTML, CSS, JavaScript and the [Official Wikipedia API]('https://www.mediawiki.org/wiki/API:Main_page').
+A project built with HTML, CSS([Semantic UI]('http://semantic-ui.com/')), JavaScript and the [Official Wikipedia API]('https://www.mediawiki.org/wiki/API:Main_page').
 
 * Make sure you have Node, Npm and Yarn installed on your local machine
 ### Getting Started with it

@@ -21,6 +21,20 @@ ___
 * Arrow function has no knowledge of the `this` keyword so it kind of inherits the `this` object from its surrounding function. It was created cos of the conflict the `this` object creates when nested functions are used.
 * InnerHTML constructs HTML on the page where it was inserted
 * InnerText just inserts raw text into where was specified
+* Whattt! Function declarations in JS are hoisted. For example this code snippet will work just fine; it will print `inside foo` to the console
+    ```
+        foo();
+        function foo () {
+            console.log('inside foo');
+        }
+    ```
+* BUT functions that are assigned to variables ARE NOT HOISTED. LOL. The code snippet below will throw a TypeError because the variable is hoisted with a value of `undefined` and `undefined` is not a function, hence, the error
+    ```
+        foo();
+        var foo = function foo () {
+            console.log('inside foo');
+        }
+    ```
 ###Questions
 1. Difference in behaviour between var and let
 ###Answers

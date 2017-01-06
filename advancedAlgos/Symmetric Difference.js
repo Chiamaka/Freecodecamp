@@ -13,13 +13,8 @@
  Symmetric Difference
  */
 
-function sym(args) {
-    const arr = [],
-        newArr = [];
-
-    for (const value of arguments) {
-        arr.push(value);
-    }
+function sym(...arr) {
+    const newArr = [];
 
     arr.forEach(current => {
         const temp = [];
